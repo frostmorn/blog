@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="{{	url_for('static',filename='css/page-style.css'	)}}">
+		<title>{% block title %}{% endblock %} - Orphey blog</title>
+	</head>
+	<body>
+		<br>
+	<div class="menu">
+		{% if g.user %}
+		<a href="/logout">
+			<div class="menu-item right menu-red">
+			Logout
+			</div>
+		</a>
+		{% else %}
+		<a href="/login">
+			<div class="menu-item right menu-red">
+			Login
+			</div>
+		</a>
+		<a href="/register">
+			<div class="menu-item right menu-red">
+			Register
+			</div>
+		</a>
+		{% endif %}
+		<a href="/about">
+			<div class="menu-item left menu-green">
+				About
+			</div>
+		</a>
+		<a href="/list">
+			<div class="menu-item left menu-green">
+				List
+			</div>
+		</a>
+	</div>
+
+	<div class="page">
+		<header>
+			{% block header %}
+				<div class="page-title">
+						{% block page_title %}
+						{% endblock %}
+				</div>
+			{% endblock %}
+		</header>	
+		<div class="page-content">
+			{% block page_content %}{% endblock %}
+		</div>	
+	</div>
+	</body>
+
+</html>

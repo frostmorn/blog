@@ -1,0 +1,85 @@
+
+body{
+	background-color:#f0efe8;
+	margin:0;
+	padding:0;
+}
+
+.error{
+	color: crimson;	
+	text-align: center;
+}
+.right{
+	margin-left:2px;
+	float:right;
+}
+.left{
+	float:left;
+	margin-right:2px;
+}
+.menu{
+	background-color:#000000;
+	height:50px;
+	width:80%;
+	margin:auto;
+}
+.menu-item{
+	display:inline-block;
+	color:white;
+	height:100%;
+	width:100px;	
+	line-height:50px;
+	text-align:center;
+	font-size:20px;
+	font-style:Roboto;	
+}
+form{
+	width: 250px;
+	margin: auto;
+}
+form label, form input{
+	height:30px;
+	border: none;
+	margin: auto;
+	line-height: 30px;
+	display: block;
+	width:250px;
+}
+form input{
+	border: 1px solid black;
+	padding:5px;
+}
+form input[type="submit"]{
+	padding: 0;
+	border:none;
+	background-color: green;
+	color: white;
+}
+form input[type="submit"]:hover{
+	background-color: black;
+}
+.menu-item:hover{
+	background-color:black;
+}
+
+.menu-red{
+	background-color:red;
+}
+.menu-green{
+	background-color:green;
+}
+.page{
+	background-color:white;
+	margin:20px;
+	width:80%;
+	margin:auto;
+	box-shadow:0px 0px 5px 1px black;			
+}
+.page-title{
+	border-bottom: 1px solid grey;
+	font-size: large;
+	font-weight: bold;
+}
+.page-content, .page-title, h1, h2, h3, h4, h5, h6{
+	padding:20px 20px;
+}
