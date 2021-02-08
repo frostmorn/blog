@@ -6,7 +6,7 @@ body{
 }
 
 .error{
-	color: crimson;	
+	color: rgb(166, 87, 102);
 	text-align: center;
 }
 .right{
@@ -30,7 +30,7 @@ body{
 	width:100px;	
 	line-height:50px;
 	text-align:center;
-	font-size:20px;
+	font-size:16px;
 	font-style:Roboto;	
 }
 form{
@@ -52,7 +52,7 @@ form input{
 form input[type="submit"]{
 	padding: 0;
 	border:none;
-	background-color: green;
+	background-color: rgb(95, 176, 95);
 	color: white;
 }
 form input[type="submit"]:hover{
@@ -63,10 +63,10 @@ form input[type="submit"]:hover{
 }
 
 .menu-red{
-	background-color:red;
+	background-color: rgb(166, 87, 102);
 }
 .menu-green{
-	background-color:green;
+	background-color:rgb(95, 176, 95);
 }
 .page{
 	background-color:white;
