@@ -1,9 +1,9 @@
 import os
-
 from . import db
 from flask import render_template
 from flask import Flask
 from flask import request
+import bcrypt
 
 def create_app(test_config=None):
     # create and configure the app
@@ -34,13 +34,18 @@ def create_app(test_config=None):
             username = request.form['username']
             password = request.form['password']
             database = db.get_db()
-            user = database.execute(
-                'SELECT * FROM user WHERE username = ? AND password = ?', (username, password)
-            ).fetchone()
+            user_hashed_password = database.execute(
+                'SELECT password FROM user WHERE username = ?', (username,)
+            ).fetchone()[0]
             if user:
-                message = "Login complete"
+                print("User is trying to login. Username = {u}, Password = {p}\r\n".format(u=username, p=password))
+
+                if bcrypt.checkpw(bytes(password, "utf-8"), bytes(bytearray.fromhex(user_hashed_password))):
+                    message = "Login complete"
+                else:
+                    message = "Login error"
             else:
-                message = "Login error"
+                message = "You even not registered -_-"
 
         return render_template('blog/auth/login.html', message = message)
 
@@ -50,14 +55,17 @@ def create_app(test_config=None):
             username = request.form['username']
             password = request.form['password']
             database = db.get_db()
+            
             user = database.execute(
                 'SELECT * FROM user WHERE username = ?', (username,)
             ).fetchone()
 
+
             if user == None:
+                hashed_password = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt()).hex()
                 print("No user found")
-                print("Trying to reg User: \r\nusername = {u}, password = {p}".format(u=username, p=password))
-                hz = database.execute('INSERT INTO user ("id","username","password") VALUES (NULL,?,?)', (username, password,)).fetchone()
+                print("Trying to reg User: \r\nusername = {u}, password = {p}, hashed={h}".format(u=username, p=password, h=hashed_password))
+                hz = database.execute('INSERT INTO user ("id","username","password") VALUES (NULL,?,?)', (username, hashed_password,)).fetchone()
                 database.commit()
                 # return "Registration complete!"
                 message = "Registration complete !"
