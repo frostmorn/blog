@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <a href="{{ url_for('show', post_id=post['id'])}}">
+        {{ post['title'] }} 
+    </a>
+{% endblock %}
+{% block page_content %}
+  {% if post %}
+
+
+
+    <div class="post-content">
+        {{ post['content'] }}
+    </div>
+    <div class="post-creation">
+        {{ post['created'] }}
+    </div>
+
+
+  {% endif %}
+
+{% endblock %}
+

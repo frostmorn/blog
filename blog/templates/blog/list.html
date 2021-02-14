@@ -4,17 +4,18 @@
     List   
 {% endblock %}
 {% block page_content %}
-{% for post in posts %}
-
-<h1>{{ post['title'] }}</h1>
-<div class="post-content">
-  {{ post['content'] }}
-</div>
-
-{% if not loop.last %}
-  <hr>
-{% endif %}
-{% endfor %}
+  {% for post in posts %}
+  <a href="{{ url_for('show', post_id=post['id'])}}">
+  <div class = "post-item">
+    <div class="post-title">
+      {{ post['title'] }}
+    </div>
+    <div class="post-creation">
+      {{ post['created'] }}
+    </div>
+  </div>
+</a>
+  {% endfor %}
 
 {% endblock %}
 

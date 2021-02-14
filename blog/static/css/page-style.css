@@ -4,6 +4,32 @@ body{
 	margin:0;
 	padding:0;
 }
+a{
+	color: inherit; 
+	text-decoration: inherit; 
+}
+.post-title, .post-creation {
+	display: inline-block;
+	font-size: 14px;
+	padding: 0;
+	margin: 0;
+  }
+  .post-item {
+	margin: 10px;
+	padding: 10px;
+  }
+  .post-item {
+	background: rgb(217, 217, 217);
+	margin: 10px;
+	padding: 10px;
+  }
+  .post-creation {
+	float: right;
+   }
+  .post-title{
+	font-weight: bold;
+	  
+  }
 #post-edit{
 	width:500px;
 }

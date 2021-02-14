@@ -8,6 +8,7 @@ from flask import session
 from flask import redirect
 from flask import url_for
 from flask import send_from_directory
+from flask import abort
 # from flask import jsonify
 import bcrypt
 
@@ -115,10 +116,14 @@ def create_app(test_config=None):
                 database.commit()
         return render_template('blog/add.html', message = "Okay we done there")
 
-    @app.route('/show/<int:page>')
-    def show(page):
-        
-        return render_template('blog/base.html')
+    @app.route('/show/<int:post_id>')
+    def show(post_id):
+        database = db.get_db()
+        post = database.execute('SELECT * FROM post WHERE id=?', (post_id, )).fetchone()
+        if post:
+            return render_template('blog/show.html', post=post)
+        else:
+            abort(404)
 
 
     db.init_app(app)
