@@ -4,7 +4,9 @@ body{
 	margin:0;
 	padding:0;
 }
-
+#post-edit{
+	width:500px;
+}
 .error{
 	color: rgb(166, 87, 102);
 	text-align: center;
@@ -37,17 +39,20 @@ form{
 	width: 250px;
 	margin: auto;
 }
-form label, form input{
+form label, form input, textarea{
 	height:30px;
 	border: none;
 	margin: auto;
 	line-height: 30px;
 	display: block;
-	width:250px;
+	width:inherit;
 }
-form input{
+form input, textarea{
 	border: 1px solid black;
 	padding:5px;
+}
+textarea{
+	height: 200px;
 }
 form input[type="submit"]{
 	padding: 0;

@@ -6,7 +6,7 @@
 	<body>
 		<br>
 	<div class="menu">
-		{% if g.user %}
+		{%  if 'user-id' in session %}
 		<a href="/logout">
 			<div class="menu-item right menu-red">
 			Logout
@@ -24,11 +24,6 @@
 			</div>
 		</a>
 		{% endif %}
-		<a href="/about">
-			<div class="menu-item left menu-green">
-				About
-			</div>
-		</a>
 		<a href="/list">
 			<div class="menu-item left menu-green">
 				List
