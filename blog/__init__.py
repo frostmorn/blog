@@ -7,7 +7,8 @@ from flask import request
 from flask import session
 from flask import redirect
 from flask import url_for
-from flask import jsonify
+from flask import send_from_directory
+# from flask import jsonify
 import bcrypt
 
 def create_app(test_config=None):
@@ -30,7 +31,9 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static/ico'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         message = ""
