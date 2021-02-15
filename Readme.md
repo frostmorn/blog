@@ -18,4 +18,4 @@ Just do it xD
 - [ ] Blog posts pagination in /list
 - [ ] User\Groups 
 - [ ] User Profile
-- [ ] Delete log purposes shitness or check on Environment type
+- [-] Delete log purposes shitness or check on Environment type

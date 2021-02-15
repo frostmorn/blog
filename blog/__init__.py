@@ -50,7 +50,8 @@ def create_app(test_config=None):
             ).fetchone()
             if user_password_query:
                 user_hashed_password = user_password_query['password']
-                print("User is trying to login. Username = {u}, Password = {p}\r\n".format(u=username, p=password))
+                if app.testing:
+                    print("User is trying to login. Username = {u}, Password = {p}\r\n".format(u=username, p=password))
 
                 if bcrypt.checkpw(bytes(password, "utf-8"), bytes(bytearray.fromhex(user_hashed_password))):
 			#todo make it okay, u got me?
@@ -77,8 +78,9 @@ def create_app(test_config=None):
 
             if user == None:
                 hashed_password = bcrypt.hashpw(bytes(password, "utf-8"), bcrypt.gensalt()).hex()
-                print("No user found")
-                print("Trying to reg User: \r\nusername = {u}, password = {p}, hashed={h}".format(u=username, p=password, h=hashed_password))
+                if app.testing:
+                    print("No user found")
+                    print("Trying to reg User: \r\nusername = {u}, password = {p}, hashed={h}".format(u=username, p=password, h=hashed_password))
                 user_query = database.execute('INSERT INTO user ("id","username","password") VALUES (NULL,?,?)', (username, hashed_password,)).fetchone()
                 database.commit()
                 # return "Registration complete!"
