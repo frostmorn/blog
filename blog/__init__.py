@@ -135,7 +135,8 @@ def create_app(test_config=None):
                 post = database.execute('SELECT * FROM post WHERE id=?', (post_id, )).fetchone()
                 if post:
                     return render_template('blog/edit.html', post=post)    
-            abort(404)
+        else:
+            return abort(404)
     @app.route('/show/<int:post_id>')
     def show(post_id):
         database = db.get_db()
