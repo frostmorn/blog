@@ -8,10 +8,14 @@
         </div>
     </a>
 {% endblock %}
+{%  if 'user-id' in session %}
 
 {% block page_actions %}
+
 <a class="page-action page-action-green" href="{{ url_for('edit', post_id=post['id']) }}">Edit</a>
+
 {% endblock %}
+{% endif %}
 {% block page_content %}
   {% if post %}
     <div class="post-content">

@@ -4,9 +4,11 @@
 List
 {% endblock %}
 
+{%  if 'user-id' in session %}
 {% block page_actions %}
 <a class="page-action page-action-green" href="{{ url_for('add') }}">Add</a>
 {% endblock %}
+{%  endif %}
 {% block page_content %}
   {% for post in posts %}
   <a href="{{ url_for('show', post_id=post['id'])}}">
