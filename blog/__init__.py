@@ -21,7 +21,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'database.sql'),
     )
-    md = Markdown(app)
+    md = Markdown(app, output_format='html5')
     smde = SimpleMDE(app)
     if test_config is None:
         # load the instance config, if it exists, when not testing

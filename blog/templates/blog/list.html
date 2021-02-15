@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-    List   
+List
+{% endblock %}
+
+{% block page_actions %}
+<a class="page-action page-action-green" href="{{ url_for('add') }}">Add</a>
 {% endblock %}
 {% block page_content %}
   {% for post in posts %}

@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{{	url_for('static',filename='css/page-style.css'	)}}">
 		{{ simplemde.css }}
 		{{ simplemde.js }}
@@ -42,6 +43,9 @@
 				</div>
 			{% endblock %}
 		</header>	
+		<div class="page-actions">
+		{% block page_actions %}{% endblock %}
+		</div>
 		<div class="page-content">
 			{% block page_content %}{% endblock %}
 		</div>	
