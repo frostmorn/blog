@@ -13,7 +13,7 @@
       "test": {
         "scripts": {
           "test-setup": "sh init.sh",
-          "test": "flask run --host=0.0.0.0 --port=80"
+          "test": "FLASK_APP=blog flask run --host=0.0.0.0 --port=80"
         }
       }
     }
