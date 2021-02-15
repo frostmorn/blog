@@ -3,6 +3,11 @@
 # Author: orphey
 ## Main Task:  Create example blog application on Flask framework
 
+## Current features:
+* Login\Registration
+* Post Add\Edit
+* Comment on Posts
+
 ## Dependencies install:
 
 ```pip install -r requirements.txt```
