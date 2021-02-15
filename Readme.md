@@ -3,8 +3,12 @@
 # Author: orphey
 ## Main Task:  Create example blog application on Flask framework
 
+## Dependencies install:
+
+```pip install -r requirements.txt```
+
 ## Init Database:
-Database could be inited by command:
+
 ```FLASK_APP=blog flask init-db```
 
 ## Deployment:

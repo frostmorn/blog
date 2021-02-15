@@ -3,21 +3,19 @@
 {% block page_title %}
     <a href="{{ url_for('show', post_id=post['id'])}}">
         {{ post['title'] }} 
+        <div class="post-creation">
+        {{ post['created'] }}
+    </div>
+
     </a>
 {% endblock %}
 {% block page_content %}
   {% if post %}
-
-
-
     <div class="post-content">
+        {% filter markdown %}
         {{ post['content'] }}
+        {% endfilter %}
     </div>
-    <div class="post-creation">
-        {{ post['created'] }}
-    </div>
-
-
   {% endif %}
 
 {% endblock %}

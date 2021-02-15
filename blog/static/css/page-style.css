@@ -31,7 +31,11 @@ a{
 	  
   }
 #post-edit{
-	width:500px;
+	width:500px!important;
+}
+/*	Fix dat shit out*/
+.CodeMirror-scroll{
+	height:inherit!important;
 }
 .error{
 	color: rgb(166, 87, 102);

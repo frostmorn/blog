@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="{{	url_for('static',filename='css/page-style.css'	)}}">
+		{{ simplemde.css }}
+		{{ simplemde.js }}
 		<title>{% block title %}{% endblock %} - Orphey blog</title>
 	</head>
 	<body>
