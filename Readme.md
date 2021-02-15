@@ -15,6 +15,7 @@
 ## Init Database:
 
 ```FLASK_APP=blog flask init-db```
+Note: This will drop all existing tables, so use it carefully
 
 ## Deployment:
 Just do it xD
@@ -24,3 +25,6 @@ Just do it xD
 - [ ] User\Groups 
 - [ ] User Profile
 - [x] Delete log purposes shitness or check on Environment type
+
+## Project State:
+Not really usable in production mode, not tested
