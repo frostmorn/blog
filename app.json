@@ -12,7 +12,7 @@
     "environments": {
       "test": {
         "scripts": {
-          "test-setup": "sh init.sh",
+          "test-setup": "flask init-db",
           "test": "flask run"
         }
       }
