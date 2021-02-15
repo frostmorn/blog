@@ -19,7 +19,7 @@ def create_app(test_config=None):
 
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'database.sql'),
+        DATABASE=os.path.join(app.instance_path, 'database.db'),
     )
     md = Markdown(app, output_format='html5')
     smde = SimpleMDE(app)
