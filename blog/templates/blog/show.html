@@ -5,9 +5,12 @@
         {{ post['title'] }} 
         <div class="post-creation">
         {{ post['created'] }}
-    </div>
-
+        </div>
     </a>
+{% endblock %}
+
+{% block page_actions %}
+<a class="page-action page-action-green" href="{{ url_for('edit', post_id=post['id']) }}">Edit</a>
 {% endblock %}
 {% block page_content %}
   {% if post %}

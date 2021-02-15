@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Edit...   
+{% endblock %}
+{% block page_content %}
+
+
+<form method="post" id="post-edit">
+  {% if post %}
+    <label for="title">Title</label>
+
+    <input name="title" id="title" required value="{{ post['title'] }}">
+
+    <label for="content">Content</label>
+
+    <textarea type="content" name="content" id="content" required>{{ post['content']}}</textarea>
+    <script>
+      var simplemde = new SimpleMDE({ element: document.getElementById("content"), forceSync:true });
+    </script>
+    <br>
+    <input type="submit" value="Edit">
+    <br>
+  {% endif %}
+  {% if message %}
+    <label class="error"> {{ message }} </label>
+  {% endif %} 
+  </form>
+
+{% endblock %}

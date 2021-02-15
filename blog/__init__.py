@@ -112,6 +112,7 @@ def create_app(test_config=None):
         return render_template('blog/list.html', posts=posts)
     @app.route('/add', methods=['GET', 'POST'])
     def add():
+        message = "Unexpected error occured. Did u forget to log in?"
         if request.method == 'POST':
             if 'user-id' in session:
                 title = request.form['title']
@@ -120,7 +121,21 @@ def create_app(test_config=None):
                 hz = database.execute('INSERT INTO post ("id","title","content", "author_id") VALUES (NULL,?,?, ?)', (title, content,int(session['user-id']))).fetchone()
                 database.commit()
         return render_template('blog/add.html', message = "Okay we done there")
-
+    @app.route('/edit/<int:post_id>', methods = ['GET', 'POST'])
+    def edit(post_id):
+        if 'user-id' in session:
+            database= db.get_db()
+            if request.method == 'POST':
+                title = request.form['title']
+                content = request.form['content']
+                hz = database.execute('UPDATE post SET title=?, content=? WHERE id =?', (title, content, post_id)).fetchone()
+                database.commit()
+                return redirect(url_for('show', post_id=post_id))
+            else:
+                post = database.execute('SELECT * FROM post WHERE id=?', (post_id, )).fetchone()
+                if post:
+                    return render_template('blog/edit.html', post=post)    
+            abort(404)
     @app.route('/show/<int:post_id>')
     def show(post_id):
         database = db.get_db()
