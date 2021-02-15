@@ -14,7 +14,9 @@
     <label for="content">Content</label>
 
     <textarea type="content" name="content" id="content" required></textarea>
-    {{ simplemde.load }}
+    <script>
+      var simplemde = new SimpleMDE({ element: document.getElementById("content"), forceSync:true });
+    </script>
     <br>
     <input type="submit" value="Add">
     <br>
