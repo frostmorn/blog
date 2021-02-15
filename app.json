@@ -1,0 +1,20 @@
+{
+    "name": "Orphey blog",
+    "description": "Flask example blog",
+    "image": "heroku/python",
+    "repository": "https://github.com/frostmorn/blog",
+    "keywords": ["python", "flask" ],
+    "env": {
+        "FLASK_APP":{
+            "value":"blog"
+        }
+    },
+    "environments": {
+      "test": {
+        "scripts": {
+          "test-setup": "sh init.sh",
+          "test": "python blog.py"
+        }
+      }
+    }
+  }
