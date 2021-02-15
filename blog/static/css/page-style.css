@@ -1,4 +1,6 @@
-
+.comment-creation {
+    float: right;
+}
 body{
 	background-color:#f0efe8;
 	margin:0;
@@ -30,9 +32,7 @@ a{
 	font-weight: bold;
 	  
   }
-#post-edit{
-	width:500px!important;
-}
+
 /*	Fix dat shit out*/
 .CodeMirror-scroll{
 	height:inherit!important;
@@ -55,7 +55,7 @@ a{
 	width:80%;
 	margin:auto;
 }
-.menu-item, .page-action{
+.menu-item, .page-action, .action-comment-button{
 	display:inline-block;
 	color:white;
 	height:100%;
@@ -65,10 +65,11 @@ a{
 	font-size:16px;
 	font-style:Roboto;	
 }
-.page-action{
+.page-action, .action-comment-button{
 	line-height: 30px;
 	float: right;
 }
+
 .page-actions{
 	margin:10px 0 ;
 	width: 100%;
@@ -76,17 +77,21 @@ a{
 	height: 30px;
 }
 
-form{
-	width: 250px;
+form, .post-comments{
+	width: 90%;
 	margin: auto;
 }
-form label, form input, textarea{
+form label, form input, textarea,  .action-comment-button{
 	height:30px;
 	border: none;
-	margin: auto;
+	width: 100%;
 	line-height: 30px;
 	display: block;
-	width:inherit;
+	padding: 20px 0;
+
+}
+.post-comment {
+    background-color: #eaf4dc;
 }
 form input, textarea{
 	border: 1px solid black;
@@ -126,6 +131,9 @@ form input[type="submit"]:hover{
 	font-size: large;
 	font-weight: bold;
 }
-.page-content, .page-title, h1, h2, h3, h4, h5, h6{
+.page-content, .page-title, h1, h2, h3, h4, h5, h6, code, .post-comments, .comment-creation, .comment-author, .comment-body{
 	padding:20px 20px;
+}
+.comment-body{
+	border-bottom: 1px solid black;
 }

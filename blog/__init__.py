@@ -142,10 +142,35 @@ def create_app(test_config=None):
         database = db.get_db()
         post = database.execute('SELECT * FROM post WHERE id=?', (post_id, )).fetchone()
         if post:
-            return render_template('blog/show.html', post=post)
+            users = []
+            user_ids =set()
+            comments = database.execute('SELECT * FROM comment WHERE post_id=?',(post_id,)).fetchall()
+            for comment in comments:
+                user_ids.add(comment['author_id'])
+            get_users_query_str = 'SELECT * FROM USER WHERE id='
+            if len(user_ids):
+                for i, user_id in enumerate(user_ids):
+                    if i != len(user_ids)-1:
+                        get_users_query_str = get_users_query_str +str(user_id)+" OR id="
+                    else:
+                        get_users_query_str = get_users_query_str +str(user_id)
+                if app.testing:
+                    print("Query = ",get_users_query_str)
+
+                users = database.execute(get_users_query_str).fetchall()
+            return render_template('blog/show.html', post=post, comments = comments, users=users)
         else:
             abort(404)
-
+    @app.route('/comment/add/<int:post_id>', methods=['POST'])
+    def comment_add(post_id):
+        if 'user-id' in session:
+            database= db.get_db()
+            comment_content = request.form['content']
+            hz = database.execute('INSERT INTO comment("id", "post_id", "author_id", "content") VALUES (NULL, ?, ?, ?)',(post_id, session['user-id'], comment_content))
+            database.commit()
+            return redirect(url_for('show', post_id=post_id))
+        else:
+            abort(502)
 
     db.init_app(app)
 

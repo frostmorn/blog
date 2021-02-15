@@ -11,9 +11,9 @@
 
 
 {% block page_actions %}
-{%  if 'user-id' in session %}
-<a class="page-action page-action-green" href="{{ url_for('edit', post_id=post['id']) }}">Edit</a>
-{% endif %}
+  {%  if 'user-id' in session %}
+  <a class="page-action page-action-green" href="{{ url_for('edit', post_id=post['id']) }}">Edit</a>
+  {% endif %}
 {% endblock %}
 
 {% block page_content %}
@@ -23,6 +23,51 @@
         {{ post['content'] }}
         {% endfilter %}
     </div>
+  {% endif %}
+  {%  if 'user-id' in session %}
+    {% if comments %}
+      <div class="post-comments">
+
+      <div class = "coment-caption">Comments:</div>
+      {% for comment in comments %}
+
+        <div class="post-comment">
+          <div class = "comment-body">
+            {% filter markdown %}
+            {{ comment['content'] }}
+            {% endfilter %}
+          </div>
+          <div class="comment-creation">
+            {{comment['created']}}
+          </div>
+
+          <div class="comment-author">
+            {%for user in users|selectattr("id", "equalto", comment['author_id']) %}
+            {{user['username']}}
+            {% endfor %}
+          </div>
+        </div>
+        <br>
+
+      {% endfor %}
+      </div>
+    {% endif %}
+    {% if post %}
+    <form action='{{url_for("comment_add", post_id=post["id"])}}' method="post">
+    <label for="content">What do u think?</label>
+
+    <textarea type="content" name="content" id="content" required></textarea>
+    <script>
+      var simplemde = new SimpleMDE({ element: document.getElementById("content"), forceSync:true });
+    </script>
+    <br>
+    <input class ="action-comment-button page-action-green" type="submit" value="I think so...">
+    <br>
+  </form>
+    {% endif %}
+
+
+    
   {% endif %}
 
 {% endblock %}
