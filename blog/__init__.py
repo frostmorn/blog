@@ -174,6 +174,13 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         return redirect(url_for('list'))
+    @app.errorhandler(404)
+    def page_not_found(e):
+    # note that we set the 404 status explicitly
+        return render_template('errors/404.html'), 404
+    @app.errorhandler(500)
+    def backend_die(e):
+        return render_template('errors/50x.html'), e
     db.init_app(app)
 
     return app

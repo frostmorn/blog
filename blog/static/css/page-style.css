@@ -6,6 +6,10 @@ body{
 	margin:0;
 	padding:0;
 }
+.error_image{
+	display: block;
+	margin: auto;
+}
 a{
 	color: inherit; 
 	text-decoration: inherit; 
