@@ -35,9 +35,8 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-    @app.route('/favicon.ico')
-    def favicon():
-        return send_from_directory(os.path.join(app.root_path, 'static/ico'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+    # Login\Register
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         message = ""
@@ -100,11 +99,7 @@ def create_app(test_config=None):
         session.clear()
         return redirect(url_for('index'))
         
-    
-    @app.route('/')
-    def index():
-        return redirect(url_for('list'))
-
+    #   Posts:
     @app.route('/list')
     def list():
         database = db.get_db()
@@ -161,6 +156,7 @@ def create_app(test_config=None):
             return render_template('blog/show.html', post=post, comments = comments, users=users)
         else:
             abort(404)
+    #   Comments :
     @app.route('/comment/add/<int:post_id>', methods=['POST'])
     def comment_add(post_id):
         if 'user-id' in session:
@@ -171,7 +167,13 @@ def create_app(test_config=None):
             return redirect(url_for('show', post_id=post_id))
         else:
             abort(502)
-
+    #   Default:    
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static/ico'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    @app.route('/')
+    def index():
+        return redirect(url_for('list'))
     db.init_app(app)
 
     return app
