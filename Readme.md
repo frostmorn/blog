@@ -1,7 +1,4 @@
 # Project name: blog
-# Project date: Sun Feb  7 06:25:32 UTC 2021
-# Author: orphey
-## Main Task:  Create example blog application on Flask framework
 
 ## Current features:
 * Login\Registration
@@ -16,9 +13,6 @@
 
 ```FLASK_APP=blog flask init-db```
 Note: This will drop all existing tables, so use it carefully
-
-## Deployment:
-Just do it xD
 
 ## TODO:
 - [ ] Blog posts pagination in /list
