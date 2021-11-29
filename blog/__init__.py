@@ -1,4 +1,5 @@
 import os
+from flaskext.markdown import Markdown
 from . import db
 from flask import render_template
 from flask import Flask
@@ -8,6 +9,7 @@ from flask import redirect
 from flask import url_for
 from flask import send_from_directory
 from flask import abort
+from flask_simplemde import SimpleMDE
 # from flask import jsonify
 import bcrypt
 
@@ -16,16 +18,11 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping(
-        DATABASE_TYPE = 'sqlite',
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'database.db'),
     )
-    # app.config.from_mapping(
-        # DATABASE_TYPE = 'mysql',
-        # SECRET_KEY='dev',
-        # DATABASE=os.path.join(app.instance_path, 'database.db'),
-    # )
-    
+    md = Markdown(app, output_format='html5')
+    smde = SimpleMDE(app)
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
